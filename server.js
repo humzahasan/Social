@@ -28,10 +28,10 @@ const connectDB = async () => {
 connectDB();
 
 const registerRouter = require('./routes/register')
-const loginRouter = require('./routes/login') 
+const loginRouter = require('./routes/auth') 
 
 app.use('/register',registerRouter)
-app.use('/login',loginRouter)
+app.use('/auth',loginRouter)
 
 
 app.listen(port , () => {

@@ -8,7 +8,7 @@ const uri = process.env.ATLAS_URI;
 
 app.use(express.json({extended : false}))
 
-
+ 
 
 const connectDB = async () => {
     try {
@@ -29,10 +29,11 @@ connectDB();
 
 const registerRouter = require('./routes/register')
 const loginRouter = require('./routes/auth') 
+const profileRouter = require('./routes/profile') 
 
 app.use('/register',registerRouter)
 app.use('/auth',loginRouter)
-
+app.use('/profile',profileRouter)
 
 app.listen(port , () => {
     console.log("Server running at port : "+port)

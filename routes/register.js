@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {check , validationResult } =  require('express-validator')
+const gravatar = require('gravatar')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -29,10 +30,17 @@ router.post('/', [
            return res.status(400).send({msg : "User already exist"}) 
         }
        
+        const avatar = gravatar.url(email, {
+            s : '200',
+            r : 'pg',
+            d : 'mm'
+        })
+
         user = new Users({
             name ,
             email, 
-            password 
+            password,
+            avatar 
         })
 
         const salt = await bcrypt.genSalt(10); 
